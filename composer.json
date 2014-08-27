@@ -1,0 +1,27 @@
+{
+    "name": "meniam/permutation",
+    "type": "library",
+    "description":  "Permutation algorithm on PHP",
+    "keywords": ["permutation", "php", "math"],
+    "homepage": "https://github.com/meniam/permutation",
+    "license":  "MIT",
+    "authors": [
+        {
+            "name": "Eugene Myazin",
+            "email": "eugene.myazin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-stem": "*"
+    },
+    "require-dev": {
+        "php": ">=5.4.0",
+        "ext-stem": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "TextGenerator": "src"
+        }
+    }
+}
