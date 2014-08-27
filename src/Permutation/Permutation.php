@@ -143,11 +143,64 @@ class Permutation
         return $this->current;
     }
 
-
-    public function getPermutationByPos($pos)
+    /**
+     * Get by position
+     *
+     * @param $position
+     *
+     * @return array
+     */
+    public function getByPos($position)
     {
+        return self::permutationByPos($this->current(), (int)$position);
     }
 
+    /**
+     * Get by position
+     *
+     * @param $array
+     * @param $num
+     *
+     * @return array
+     */
+    public static function permutationByPos($array, $num)
+    {
+        if ($num <= 0) {
+            $num = 0;
+        }
+
+        $num  = abs($num) + 1;
+        $n    = count($array);
+        $used = array_fill(0, $n + 1, false);
+        $res  = [];
+
+        $factorial = self::factorial($n);
+        if ($num > $factorial) {
+            $num = $num % $factorial;
+        }
+
+        for ($i = 0; $i < $n; $i++) {
+            $factorial = self::factorial($n - $i - 1);
+
+            $blockNum = intval( ($num - 1) / $factorial + 1);
+
+            $pos = 0;
+            for ($j = 1; $j < count($used); $j++) {
+                if (!$used[$j]) {
+                    $pos++;
+                }
+                if ($blockNum == $pos) {
+                    break;
+                }
+            }
+
+            $res[$i] = $j-1;
+            $used[$j] = true;
+            $num = intval(($num - 1) % $factorial) + 1;
+        }
+
+        return $res;
+    }
 
     /**
      * @return array
@@ -163,5 +216,18 @@ class Permutation
     public function count()
     {
         return $this->elements;
+    }
+
+    /**
+     * Factorial
+     *
+     * @param $x
+     *
+     * @return int
+     */
+    private static function factorial($x)
+    {
+        return ($x === 0) ? 1 :
+                    $x*self::factorial($x-1);
     }
 }

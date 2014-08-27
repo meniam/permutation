@@ -22,6 +22,15 @@ class PermutationTest extends TestCase
         new Permutation(0);
     }
 
+    public function testGetByPos()
+    {
+        $permutation = new Permutation(2);
+
+        $this->assertEquals([0, 1], $permutation->getByPos(0));
+        $this->assertEquals([1, 0], $permutation->getByPos(1));
+        $this->assertEquals([0, 1], $permutation->getByPos(2));
+    }
+
     public function testPermuteArray()
     {
         $permutation = new Permutation(2);
