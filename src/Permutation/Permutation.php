@@ -176,7 +176,7 @@ class Permutation
 
         $factorial = self::factorial($n);
         if ($num > $factorial) {
-            $num = $num % $factorial;
+            $num = $factorial % $num;
         }
 
         for ($i = 0; $i < $n; $i++) {
