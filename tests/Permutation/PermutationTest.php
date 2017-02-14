@@ -24,21 +24,44 @@ class PermutationTest extends TestCase
     public function testGetByPos()
     {
         $permutation = new Permutation(2);
-        $this->assertEquals([0, 1], $permutation->getByPos(0));
-        $this->assertEquals([1, 0], $permutation->getByPos(1));
-        $this->assertEquals([0, 1], $permutation->getByPos(2));
-        $this->assertEquals([1, 0], $permutation->getByPos(3));
-        $this->assertEquals([0, 1], $permutation->getByPos(4));
-        $this->assertEquals([1, 0], $permutation->getByPos(5));
+        $exists = [];
+        for ($i=1;$i<=2;$i++) {
+            $shift = $permutation->getByPos($i);
+            $this->assertFalse(in_array($shift, $exists), 'Error in iteration #' . $i);
+            $exists[]=$shift;
+        }
 
         $permutation = new Permutation(3);
-        $this->assertEquals([0, 1, 2], $permutation->getByPos(0));
-        $this->assertEquals([0, 2, 1], $permutation->getByPos(1));
-        $this->assertEquals([1, 0, 2], $permutation->getByPos(2));
-        $this->assertEquals([1, 2, 0], $permutation->getByPos(3));
-        $this->assertEquals([2, 0, 1], $permutation->getByPos(4));
-        $this->assertEquals([2, 1, 0], $permutation->getByPos(5));
-        $this->assertEquals([0, 1, 2], $permutation->getByPos(6));
+        $exists = [];
+        for ($i=1;$i<=6;$i++) {
+            $shift = $permutation->getByPos($i);
+            $this->assertFalse(in_array($shift, $exists), 'Error in iteration #' . $i);
+            $exists[]=$shift;
+        }
+
+        $permutation = new Permutation(4);
+        $exists = [];
+        for ($i=1;$i<=24;$i++) {
+            $shift = $permutation->getByPos($i);
+            $this->assertFalse(in_array($shift, $exists), 'Error in iteration #' . $i);
+            $exists[]=$shift;
+        }
+
+        $permutation = new Permutation(5);
+        $exists = [];
+        for ($i=1;$i<=120;$i++) {
+            $shift = $permutation->getByPos($i);
+            $this->assertFalse(in_array($shift, $exists), 'Error in iteration #' . $i);
+            $exists[]=$shift;
+        }
+
+        $exists2 = [];
+        for ($i=121;$i<=240;$i++) {
+            $shift = $permutation->getByPos($i);
+            $this->assertTrue(in_array($shift, $exists), 'Error in iteration #' . $i);
+            $this->assertFalse(in_array($shift, $exists2), 'Error in iteration #' . $i);
+            $exists2[]=$shift;
+        }
     }
 
     public function testPermuteArray()
