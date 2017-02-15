@@ -15,12 +15,11 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "php": ">=5.4.0",
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
         "psr-0": {
-            "Permutation": "src"
+            "Permutation\\": "src"
         }
     }
 }
