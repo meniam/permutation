@@ -18,8 +18,6 @@
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
-        "psr-0": {
-            "Permutation": "src/"
-        }
+        "psr-4": {"Permutation\\": "src/Permutation"}
     }
 }
